@@ -36,13 +36,13 @@ public class CurrentInventory {
 
 						}
 						else if (menuOption == 3) {
-							removeCar();
+							removeCar(curCars, scnr);
 						}
 						else if (menuOption == 4) {
 							printInventory();
 						}
 						else if (menuOption == 5) {
-							updateCar();
+							updateCar(curCars, scnr);
 						}
 						else if (menuOption == 6) {
 							System.out.println("Thank you for using this program. Now closing.");
@@ -57,8 +57,29 @@ public class CurrentInventory {
 											+ curCars);
 	}
 
-	private static void updateCar() {
-		// TODO Auto-generated method stub
+	private static void updateCar(ArrayList<Automobile> curCars, Scanner scnr) {
+		try {
+		System.out.println("Please enter the lot number of the car you wish to update:");
+		int upCar = scnr.nextInt();
+		System.out.println("Updating " + curCars.get(upCar - 1));
+		System.out.println("What would you like to update?");
+		System.out.println("1 - Make");
+		System.out.println("2 - Model");
+		System.out.println("3 - Color");
+		System.out.println("4 - Year");
+		System.out.println("5 - Mileage");
+		
+		int upOp = scnr.nextInt();
+		
+			switch (upOp) {
+			case 1:
+				Automobile aCar = curCars.get(upCar -1);
+				System.out.println("Enter new make:");
+				aCar.setMake(scnr.next());
+				System.out.println("Done");	
+			}
+		}
+		catch (Exception e) {System.out.println(e);}
 		
 	}
 
@@ -67,12 +88,18 @@ public class CurrentInventory {
 		
 	}
 
-	private static void removeCar() {
-	
-		
+	private static void removeCar(ArrayList<Automobile> curCars, Scanner scnr) {
+		try {
+		System.out.println("Enter Car lotnum:");
+		int reCar = scnr.nextInt();
+		curCars.remove(reCar -1);
+		System.out.println("Removed lot num " + reCar);
+		}
+		catch (Exception e) {System.out.println(e);}
 	}
 
 	public static void addCar(ArrayList<Automobile> curCars, Scanner scnr) {
+		try {
 		System.out.println("Please enter new car as prompted:");
 		scnr.nextLine();
 		System.out.println("Make:");
@@ -90,5 +117,11 @@ public class CurrentInventory {
 		Automobile aCar = new Automobile(make, model, color, year, mileage, lotnum);
 		curCars.add(aCar);
 		System.out.println("Success." + aCar + "added.");
+		}
+		catch (Exception e) {System.out.println("Could not add car:");
+							 System.out.println(e);} 
+
 	}
+		
+				
 }
