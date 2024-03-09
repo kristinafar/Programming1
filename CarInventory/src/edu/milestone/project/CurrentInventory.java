@@ -1,11 +1,16 @@
 package edu.milestone.project;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 
 public class CurrentInventory {
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) throws IOException {
+		
 		Scanner scnr = new Scanner(System.in);
 		ArrayList<Automobile> curCars = new ArrayList<Automobile>();
 		
@@ -15,7 +20,6 @@ public class CurrentInventory {
 		int menuOption;
 		int i;
 		i = 0;
-
 	
 		while (i < '5') {
 				System.out.println("Please select an option by entering a number:");
@@ -68,25 +72,51 @@ public class CurrentInventory {
 		System.out.println("3 - Color");
 		System.out.println("4 - Year");
 		System.out.println("5 - Mileage");
-		
+		Automobile aCar = curCars.get(upCar -1);
 		int upOp = scnr.nextInt();
 		
 			switch (upOp) {
+			
 			case 1:
-				Automobile aCar = curCars.get(upCar -1);
 				System.out.println("Enter new make:");
 				aCar.setMake(scnr.next());
 				System.out.println("Done");	
-			}
+				break;
+			case 2:
+				System.out.println("Enter new model:");
+				aCar.setModel(scnr.next());
+				System.out.println("Done");	
+				break;
+			case 3:
+				System.out.println("Enter new color:");
+				aCar.setColor(scnr.next());
+				System.out.println("Done");	
+				break;
+			case 4:
+				System.out.println("Enter new year:");
+				aCar.setYear(scnr.nextInt());
+				System.out.println("Done");	
+				break;
+			case 5:
+				System.out.println("Enter new mileage:");
+				aCar.setMileage(scnr.nextInt());
+				System.out.println("Done");	
+				break;
+		}
+			
 		}
 		catch (Exception e) {System.out.println(e);}
 		
 	}
 
-	private static void printInventory() {
-		// TODO Auto-generated method stub
-		
-	}
+	private static void printInventory(ArrayList<Automobile> curCars, PrintWriter printer, FileOutputStream fileStream) {
+		try {
+			System.out.println("Saving file for print -");
+			
+			System.out.println("Success!");
+			} 
+		catch (IOException ex) { System.out.println("Unable to save file");}
+		}
 
 	private static void removeCar(ArrayList<Automobile> curCars, Scanner scnr) {
 		try {
@@ -94,6 +124,7 @@ public class CurrentInventory {
 		int reCar = scnr.nextInt();
 		curCars.remove(reCar -1);
 		System.out.println("Removed lot num " + reCar);
+		System.out.print("Current inventorty:" + curCars);
 		}
 		catch (Exception e) {System.out.println(e);}
 	}

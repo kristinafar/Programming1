@@ -67,7 +67,8 @@ public class Automobile {
 		               " Model: " + getModel() +
 		               " Year: "+ getYear() +
 		               " Lot Num: " + getLotNum() +
-		               " Mileage: " + getMileage());
+		               " Mileage: " + getMileage() +
+		               "\n");
 		   }
 }
 		
