@@ -47,7 +47,7 @@ public class CurrentInventory {
 							removeCar(curCars, scnr);
 						}
 						else if (menuOption == 4) {
-							printInventory(curCars,fileOut,outPut);
+							printInventory(curCars, fileOut, outPut, scnr);
 						}
 						else if (menuOption == 5) {
 							updateCar(curCars, scnr);
@@ -61,10 +61,11 @@ public class CurrentInventory {
 	}
 
 	private static void viewInventory(ArrayList<Automobile> curCars) {
-		System.out.println("Current inventory:" 
-											+ curCars);
+		for(int i = 0; i < curCars.size(); i++) {
+			System.out.println(curCars.get(i));
+		}
 	}
-
+	
 	private static void updateCar(ArrayList<Automobile> curCars, Scanner scnr) {
 		try {
 		System.out.println("Please enter the lot number of the car you wish to update:");
@@ -113,15 +114,21 @@ public class CurrentInventory {
 		
 	}
 
-	private static void printInventory(ArrayList<Automobile> curCars, FileOutputStream fileOut, PrintWriter outPut) {
+	private static void printInventory(ArrayList<Automobile> curCars, FileOutputStream fileOut, PrintWriter outPut, Scanner scnr) {
 		try {
-			System.out.println("Saving file for print -");
+			System.out.println("Do you want to print the inventory? Y or N?");
+			char priOpt = scnr.next().charAt(0);
+			if (priOpt == 'Y') {
 			fileOut = new FileOutputStream("/Users/krist/Documents/InvList.txt");
 			outPut = new PrintWriter(fileOut);
 			outPut.print(curCars);
 			System.out.println("Success!");
 			outPut.close();
 			} 
+			else {
+				System.out.println("File not printing. Thank you for using this program. Now closing.");
+			}
+		}
 		catch (IOException ex) { System.out.println("Unable to save file");}
 		}
 

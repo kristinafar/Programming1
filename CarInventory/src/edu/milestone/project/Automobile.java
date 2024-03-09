@@ -59,16 +59,16 @@ public class Automobile {
 		public void setMileage(int mileage) {
 			this.mileage = mileage;
 		}
+
 		
 		//convert to string
 		 @Override
 		   public String toString() {
-		        return ("Make:" + getMake()+
-		               " Model: " + getModel() +
-		               " Year: "+ getYear() +
-		               " Lot Num: " + getLotNum() +
-		               " Mileage: " + getMileage() +
-		               "\n");
+		        return ("\nMake: " + getMake()+
+		               " \nModel: " + getModel() +
+		               " \nYear: "+ getYear() +
+		               " \nLot Num: " + getLotNum() +
+		               " \nMileage: " + getMileage() + "\n" );  
 		   }
 }
 		
