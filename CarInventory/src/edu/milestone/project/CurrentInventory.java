@@ -8,7 +8,7 @@ import java.io.IOException;
 
 
 public class CurrentInventory {
-	
+	    
 	public static void main(String[] args) throws IOException {
 		
 		Scanner scnr = new Scanner(System.in);
@@ -20,7 +20,11 @@ public class CurrentInventory {
 		int menuOption;
 		int i;
 		i = 0;
-	
+		
+		FileOutputStream fileOut = null;
+	    PrintWriter outPut = null;
+
+	     
 		while (i < '5') {
 				System.out.println("Please select an option by entering a number:");
 				System.out.println("1: View Inventory");
@@ -43,7 +47,7 @@ public class CurrentInventory {
 							removeCar(curCars, scnr);
 						}
 						else if (menuOption == 4) {
-							printInventory();
+							printInventory(curCars,fileOut,outPut);
 						}
 						else if (menuOption == 5) {
 							updateCar(curCars, scnr);
@@ -109,11 +113,14 @@ public class CurrentInventory {
 		
 	}
 
-	private static void printInventory(ArrayList<Automobile> curCars, PrintWriter printer, FileOutputStream fileStream) {
+	private static void printInventory(ArrayList<Automobile> curCars, FileOutputStream fileOut, PrintWriter outPut) {
 		try {
 			System.out.println("Saving file for print -");
-			
+			fileOut = new FileOutputStream("/Users/krist/Documents/InvList.txt");
+			outPut = new PrintWriter(fileOut);
+			outPut.print(curCars);
 			System.out.println("Success!");
+			outPut.close();
 			} 
 		catch (IOException ex) { System.out.println("Unable to save file");}
 		}
