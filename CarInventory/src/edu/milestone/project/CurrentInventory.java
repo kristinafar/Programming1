@@ -118,10 +118,12 @@ public class CurrentInventory {
 		try {
 			System.out.println("Do you want to print the inventory? Y or N?");
 			char priOpt = scnr.next().charAt(0);
-			if (priOpt == 'Y') {
+			if (priOpt == 'Y' || priOpt == 'y') {
 			fileOut = new FileOutputStream("/Users/krist/Documents/InvList.txt");
 			outPut = new PrintWriter(fileOut);
-			outPut.print(curCars);
+			for(int i = 0; i < curCars.size(); i++) {
+				outPut.print(curCars.get(i));
+			}
 			System.out.println("Success!");
 			outPut.close();
 			} 
